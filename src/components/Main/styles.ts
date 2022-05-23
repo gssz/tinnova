@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+interface InputProps {
+  error?: boolean
+}
+
 export const FormWrapper = styled.form`
   color: #fff;
   width: 100%;
@@ -18,16 +22,16 @@ export const WrapperInput = styled.div`
   flex-direction: column;
   align-items: flex-start;
   position: relative;
+  margin-bottom: 20px;
 `
 
-export const InputStyled = styled.input`
+export const InputStyled = styled.input<InputProps>`
   border: none;
   border-bottom: 2px solid #000;
   padding: 10px;
   width: 300px;
   outline: none;
   font-weight: 700;
-  margin-bottom: 20px;
   background: transparent;
   transition: all 0.3s ease-out;
   &:focus + label,
@@ -40,6 +44,10 @@ export const InputStyled = styled.input`
   &::placeholder {
     color: transparent;
   }
+  &::after {
+    content: 'teste';
+  }
+  border-bottom: ${(props) => (props.error === false ? '2px solid red' : '')};
 `
 export const LabelStyled = styled.label`
   font-size: 12px;
@@ -72,5 +80,26 @@ export const Button = styled.button`
     &:hover {
       opacity: 1;
     }
+  }
+`
+
+export const ErrorMessage = styled.p`
+  font-size: 11px;
+  font-weight: 500;
+  color: #d7182a;
+  margin-top: 1px;
+`
+export const TableUser = styled.table`
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  th td {
+    padding: 20px 0;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tbody td:last-child {
+    cursor: pointer;
   }
 `
